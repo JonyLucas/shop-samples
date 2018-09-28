@@ -29,7 +29,8 @@ Array.from(document.getElementsByClassName("img_thumb")).forEach( (value, index)
 	value.onclick = (event) => {
 		event.preventDefault();
 		entry = products[index];
-		products_area.innerHTML = createItem(entry);
+		products_area.innerHTML = "";
+		products_area.appendChild(createItem(entry));
 	}
 });
 
@@ -37,7 +38,8 @@ Array.from(document.getElementsByClassName("name_thumb")).forEach( (value, index
 	value.onclick = (event) => {
 		event.preventDefault();
 		entry = products[index];
-		products_area.innerHTML = createItem(entry);
+		products_area.innerHTML = "";
+		products_area.appendChild(createItem(entry));
 	}
 });
 
@@ -51,17 +53,48 @@ Array.from(document.querySelectorAll("[button]")).forEach( element => {
 });
 
 function displayAllProducts(){
-	products_area.innerHTML = products.map(entry => {
-		return '<span class="item">' + 
-		'<a href="" class="img_thumb"><img src="' + entry.img_src + '" alt="' + entry.name + '" width=100px></a>' +
-		'<a href="" class="name_thumb"><div class="title">' + entry.name + '</div></a>' +
-		'<div class="price">R$ ' + entry.price.toFixed(2) + '</div></span>'
-	}).join("");
+
+	products_area.innerHTML = "";
+
+	products.forEach(entry => {
+
+		product_item = createItem(entry);
+		products_area.appendChild(product_item);
+
+	});
 }
 
 function createItem(product){
-	return '<span class="item">' + 
-		   '<img src="' + product.img_src + '" alt="' + product.name + '" width=100px>' +
-		   '<div class="title">' + product.name + '</div>' +
-		   '<div class="price">R$ ' + product.price.toFixed(2) + '</div></span>';
+
+	product_item = document.createElement("span");
+	product_item.setAttribute("class", "item");
+
+	img_link = document.createElement("a");
+	img_link.setAttribute("class", "img_thumb");
+	img_link.setAttribute("href", "");
+
+	image = document.createElement("img");
+	image.setAttribute("src", product.img_src);
+	image.setAttribute("alt", product.name);
+	image.setAttribute("width", "100px");
+
+	title_link = document.createElement("a");
+	title_link.setAttribute("class", "name_thumb");
+	title_link.setAttribute("href", "");
+
+	title = document.createElement("div");
+	title.setAttribute("class", "title");
+	title.textContent = product.name;
+
+	price = document.createElement("div");
+	price.setAttribute("class", "price");
+	price.textContent = "R$ " + product.price.toFixed(2);
+
+	img_link.appendChild(image);
+	title_link.appendChild(title);
+	product_item.appendChild(img_link);
+	product_item.appendChild(title_link);
+	product_item.appendChild(price);
+
+	return product_item;
 }
