@@ -1,0 +1,21 @@
+{
+  "name": "shop-samples",
+  "version": "1.0.0",
+  "main": "app.js",
+  "repository": "git@github.com:JonyLucas/shop-samples.git",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "mocha --recursive"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "express-async-errors": "^3.0.0",
+    "mysql": "^2.16.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
+    "supertest": "^3.3.0"
+  }
+}
