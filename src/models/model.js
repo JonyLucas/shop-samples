@@ -37,6 +37,11 @@ module.exports = class Model {
     return attributes.map(key => `'${data[key]}'`).join(separator);
   }
 
+  parseSet(data) {
+    const attributes = this.filterAttributes(data);
+    return attributes.map(key => `${key} = '${data[key]}'`).join(', ');
+  }
+
   parseOptions(options = {}) {
     const optionsList = [];
 
@@ -67,7 +72,7 @@ module.exports = class Model {
     return this.query(sql);
   }
 
-  set(query, data, options) {
+  async set(query, data, options) {
     const joinedOptions = this.parseOptions(options);
     const sql = `
       UPDATE ${this.name}
@@ -75,17 +80,19 @@ module.exports = class Model {
       WHERE ${query}
       ${joinedOptions};`;
 
-    return this.query(sql);
+      const result = await this.query(sql);
+      return result.affectedRows;
   }
 
-  delete(query, options) {
+  async delete(query, options) {
     const joinedOptions = this.parseOptions(options);
     const sql = `
       DELETE FROM ${this.name}
       WHERE ${query}
       ${joinedOptions};`;
 
-    return this.query(sql);
+    const result = await this.query(sql);
+    return result.affectedRows;
   }
 
   clear() {

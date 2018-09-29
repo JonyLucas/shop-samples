@@ -2,6 +2,7 @@ const request = require('supertest');
 const expect = require('chai').expect;
 const Product = require('../../src/models/product');
 const { app, listenAsync } = require('../../src/app');
+require('../index');
 
 const ROUTE = '/api/product';
 
@@ -60,5 +61,34 @@ describe('Controllers | Product', () => {
       .expect(200);
 
     expect(body.products).to.be.an('array').that.has.length(4);
+  });
+
+  it('should update a product by the ID', async () => {
+    const id = await Product.create({
+      name: Math.random().toString(),
+      price: Math.random(),
+    });
+
+    await request(app)
+      .put(`${ROUTE}/${id}`)
+      .send({ name: 'new name' })
+      .expect(200);
+
+    const product = await Product.findById(id);
+    expect(product.name).to.equal('new name');
+  });
+
+  it('should delete a product by the ID', async () => {
+    const id = await Product.create({
+      name: Math.random().toString(),
+      price: Math.random(),
+    });
+
+    await request(app)
+      .delete(`${ROUTE}/${id}`)
+      .expect(200);
+
+    const product = await Product.findById(id);
+    expect(product).to.not.exist;
   });
 });

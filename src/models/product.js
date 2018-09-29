@@ -21,12 +21,16 @@ class Product extends Model {
     return this.select(null, projection, options);
   }
 
-  // update(query, data, options) {
-  //   const attributes = filterAttributes(data);
-  //   const joinedQuery = attributes.map(key => `${key} = '${data[key]}'`).join(' && ');
-  //   const joinedData = attributes.map(key => `${key} = '${data[key]}'`).join(', ');
-  //   return this.set(joinedQuery, joinedData, options);
-  // }
+  async updateById(id, data) {
+    const joinedData = this.parseSet(data);
+    const updated = await this.set(`id = ${id}`, joinedData, { limit: 1 });
+    return updated === 1;
+  }
+
+  async deleteById(id) {
+    const deleted = await this.delete(`id = ${id}`, { limit: 1 });
+    return deleted === 1;
+  }
 }
 
 module.exports = new Product();
