@@ -15,8 +15,9 @@ class Database {
 
       this.connection = mysql.createConnection({
         host: constants.database.address,
-        user: 'mateus',
-        database: constants.database.name
+        user: constants.database.user,
+        password: constants.database.password,
+        database: constants.database.name,
       });
       
       this.connection.connect((error) => {
