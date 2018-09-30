@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Products</title>
+</head>
+
+<body>
+  <div class="page">
+    <div class"product">
+      Name:
+      <input id="product-name" name="name" />
+      <br />
+      <br />
+
+      Price:
+      <input id="product-price" name="price" type="number" />
+      <br />
+      <br />
+
+      Category:
+      <select id="product-category" name="category"></select>
+      <br />
+      <br />
+
+      <a href="/">Back</button>
+      <button id="product-create" onclick="ProductController.createProduct()">Create</button>
+    </div>
+  </div>
+
+	<script src="/vendors/jquery-3.3.1.js" type="text/javascript"></script>
+	<script src="/scripts/services/category.js" type="text/javascript"></script>
+	<script src="/scripts/services/product.js" type="text/javascript"></script>
+	<script src="/scripts/controllers/product.js" type="text/javascript"></script>
+</body>
+</html>

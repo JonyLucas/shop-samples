@@ -12,7 +12,7 @@ const CategoryController = require('./controllers/category');
 const app = express()
   .use(bodyParser.json({ limit: '5mb' }))
   .use(bodyParser.urlencoded({ limit: '5mb', extended: true }))
-  .use(express.static(path.join(__dirname, 'public')))
+  .use(express.static(path.join(__dirname, '../public')))
 
   // Logging
   .use((req, res, next) => {
