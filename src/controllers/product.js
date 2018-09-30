@@ -33,17 +33,19 @@ module.exports = Router()
    * @apiSuccess (200) {Number} product.price The price.
    * @apiSuccess (200) {String} product.timestamp The creation date.
    */
-  .get('/:id', async (req, res) => {
+  .get('/:id(\\d+)', async (req, res) => {
     const { id } = req.params;
     const product = await Product.findById(id);
     res.json({ product });
   })
 
   /**
-   * @api {get} /product Get products
+   * @api {get} /product?category Get products
    * @apiGroup Product
    * @apiVersion 1.0.0
    * @apiDescription Finds all products.
+   * 
+   * @apiParam {Number} [category] The category ID.
    * 
    * @apiSuccess (200) {Object[]} products The products list.
    * @apiSuccess (200) {Number} products.id The id.
@@ -52,7 +54,8 @@ module.exports = Router()
    * @apiSuccess (200) {String} products.timestamp The creation date.
    */
   .get('/', async (req, res) => {
-    const products = await Product.findAll();
+    const { category } = req.query;
+    const products = await Product.find({ category });
     res.json({ products });
   })
 

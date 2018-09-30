@@ -7,7 +7,7 @@ class Category extends Model {
   }
 
   create({ name }) {
-    return this.insert('name', name);
+    return this.insert('name', `'${name}'`);
   }
 
   async findById(id, projection = '*') {
@@ -20,7 +20,7 @@ class Category extends Model {
   }
 
   async updateById(id, data) {
-    const joinedData = this.parseSet(data);
+    const joinedData = this.joinData(data);
     const updated = await this.set(`id = ${id}`, joinedData, { limit: 1 });
     return updated === 1;
   }

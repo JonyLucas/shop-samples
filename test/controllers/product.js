@@ -38,7 +38,6 @@ describe('Controllers | Product', () => {
     };
 
     const id = await Product.create(data);
-
     const { body } = await request(app)
       .get(`${ROUTE}/${id}`)
       .expect(200);

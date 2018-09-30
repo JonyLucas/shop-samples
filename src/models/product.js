@@ -8,7 +8,7 @@ class Product extends Model {
 
   create(data) {
     const joinedAttributes = this.filterAttributes(data).join(', ');
-    const joinedData = this.parseValues(data);
+    const joinedData = this.joinValues(data);
     return this.insert(joinedAttributes, joinedData);
   }
 
@@ -16,13 +16,22 @@ class Product extends Model {
     const products = await this.select(`id = ${id}`, projection, { limit: 1 });
     return products[0] || null;
   }
+  
+  findByCategory(category, projection = '*', options = {}) {
+    return this.query(`
+      SELECT p.*
+      FROM ${this.name} as p
+      JOIN category as c ON p.category = c.id
+      WHERE c.name = ${this.parseValue(category)}`);
+  }
 
-  findAll(projection = '*', options = {}) {
-    return this.select(null, projection, options);
+  find(data = {}, projection = '*', options = {}) {
+    const joinedData = this.joinData(data);
+    return this.select(joinedData, projection, options);
   }
 
   async updateById(id, data) {
-    const joinedData = this.parseSet(data);
+    const joinedData = this.joinData(data);
     const updated = await this.set(`id = ${id}`, joinedData, { limit: 1 });
     return updated === 1;
   }

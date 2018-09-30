@@ -5,15 +5,16 @@ CREATE TABLE IF NOT EXISTS `test` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `required` varchar(64) NOT NULL,
   `optional` varchar(64) DEFAULT NULL,
-  `auto` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `auto` timestamp DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 );
 
 CREATE TABLE IF NOT EXISTS `category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) NOT NULL,
-  `timestamp` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
+  `timestamp` timestamp DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE (`name`)
 );
 
 CREATE TABLE IF NOT EXISTS `product` (
@@ -21,7 +22,7 @@ CREATE TABLE IF NOT EXISTS `product` (
   `name` varchar(64) NOT NULL,
   `price` decimal(6,2) NOT NULL,
   `category` int(11) DEFAULT NULL,
-  `timestamp` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `timestamp` timestamp DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
-  CONSTRAINT `category` FOREIGN KEY (`category`) REFERENCES `category`(`id`),
+  CONSTRAINT `category` FOREIGN KEY (`category`) REFERENCES `category`(`id`)
 );

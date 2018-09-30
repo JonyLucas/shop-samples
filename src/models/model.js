@@ -32,14 +32,30 @@ module.exports = class Model {
     return [];
   }
 
-  parseValues(data, separator = ', ') {
-    const attributes = this.filterAttributes(data);
-    return attributes.map(key => `'${data[key]}'`).join(separator);
+  parseValue(value) {
+    if (value === null || value === undefined) {
+      return 'NULL';
+    }
+  
+    if (typeof value === 'boolean') {
+      return value ? '1' : '0';
+    }
+  
+    return `'${value}'`;
   }
 
-  parseSet(data) {
-    const attributes = this.filterAttributes(data);
-    return attributes.map(key => `${key} = '${data[key]}'`).join(', ');
+  joinValues(data, separator = ', ') {
+    return this.filterAttributes(data)
+      .filter(key => data[key] !== undefined)
+      .map(key => this.parseValue(data[key]))
+      .join(separator);
+  }
+    
+  joinData(data, separator = ', ') {
+    return this.filterAttributes(data)
+      .filter(key => data[key] !== undefined)
+      .map(key => `${key} = ${this.parseValue(data[key])}`)
+      .join(separator);
   }
 
   parseOptions(options = {}) {
