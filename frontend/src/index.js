@@ -23,45 +23,71 @@ class Product extends React.Component{
 }
 
 class ProductArea extends React.Component{
+
+	constructor(props){
+		super(props);
+
+		this.state = {
+			products: props.products,
+		};
+	}
+
+	generateProducts(){
+		return this.state.products
+				.map(element => <Product value={element.value} name={element.name} src={element.src} txt={element.txt}/>)
+				.reduce( (prev, curr) => [prev, '\n', curr]);
+	}
+
 	render(){
-		return (<div class='productArea'>
-					<Product value={200} name='Phisically Based Rendering 3rd edition' src='bookcover.png' text='Bookcover'/>
-					<Product value={200} name='Phisically Based Rendering 3rd edition' src='bookcover.png' text='Bookcover'/>
-					<Product value={200} name='Phisically Based Rendering 3rd edition' src='bookcover.png' text='Bookcover'/>
-					<Product value={200} name='Phisically Based Rendering 3rd edition' src='bookcover.png' text='Bookcover'/>
-					<Product value={200} name='Phisically Based Rendering 3rd edition' src='bookcover.png' text='Bookcover'/>
-					<Product value={200} name='Phisically Based Rendering 3rd edition' src='bookcover.png' text='Bookcover'/>
-					<Product value={200} name='Phisically Based Rendering 3rd edition' src='bookcover.png' text='Bookcover'/>
-					<Product value={200} name='Phisically Based Rendering 3rd edition' src='bookcover.png' text='Bookcover'/>
-					<Product value={200} name='Phisically Based Rendering 3rd edition' src='bookcover.png' text='Bookcover'/>
-					<Product value={200} name='Phisically Based Rendering 3rd edition' src='bookcover.png' text='Bookcover'/>
-					<Product value={200} name='Phisically Based Rendering 3rd edition' src='bookcover.png' text='Bookcover'/>
-					<Product value={200} name='Phisically Based Rendering 3rd edition' src='bookcover.png' text='Bookcover'/>
-					<Product value={200} name='Phisically Based Rendering 3rd edition' src='bookcover.png' text='Bookcover'/>
-					<Product value={200} name='Phisically Based Rendering 3rd edition' src='bookcover.png' text='Bookcover'/>
-				</div>
+		return ( <ul class='productArea'>
+					{this.generateProducts()}
+				</ul>
 		);
 	}
 }
 
-class ProductList extends React.Component{
+class CategoryList extends React.Component{
+
+	constructor(props){
+		super(props);
+
+		this.state = {
+			categoryList: props.categoryList,
+		};
+	}
+
+	generateCategories(){
+		return this.state.categoryList
+				.map(element => <li>{element}</li>)
+				.reduce( (prev, curr) => [prev, '\n', curr]);
+	}
+
 	render(){
-		return ( <ul class='productList'>
-					<li>Televisores</li>
-					<li>Celulares</li>
-					<li>Tablets</li>
-					<li>Notebooks</li>
-					<li>Livros</li>
+		return ( <ul class='categoryList'>
+					{this.generateCategories()}
 				</ul>
 		);
 	}
 }
 
 class BuyArea extends React.Component{
+
+	constructor(props){
+		super(props)
+
+		this.state = {
+			categoryList: ['Televisores', 'Celulares', 'Tablets', 'Notebooks', 'Livros'],
+			products: [
+				{value:200, name:'Phisically Based Rendering 3rd edition', src:'bookcover.png', text:'Bookcover3'},
+				{value:100, name:'Phisically Based Rendering 2nd edition', src:'bookcover.png', text:'Bookcover2'},
+			]
+		};
+	}
+
 	render(){
 		return (<div class='buyArea'>
-					<ProductList/>
-					<ProductArea/>
+					<CategoryList categoryList={this.state.categoryList}/>
+					<ProductArea products={this.state.products}/>
 				</div>
 		);
 	}
@@ -111,7 +137,6 @@ class MainPage extends React.Component{
 		);
 	}
 }
-
 
 ReactDOM.render(
 	<MainPage />,
