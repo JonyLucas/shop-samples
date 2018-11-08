@@ -7,7 +7,7 @@ import {CategoryList, HeadBar} from './extra.js'
 class PriceAndButton extends React.Component{
 	render(){
 		return (<div class='priceLine'>
-					<span class='price'>{'R$ ' + this.props.value.toFixed(2)}</span><button>Add</button>
+					<span class='price'>{'R$ ' + this.props.value.toFixed(2)}</span><button class='minButton'>Add</button>
 				</div>
 		);
 	}
@@ -16,7 +16,7 @@ class PriceAndButton extends React.Component{
 class Product extends React.Component{
 	render(){
 		return (<div class='productItem'>
-					<img class='productImage' src={this.props.src} alt={this.props.text} width='120'/>
+					<img class='productImage' src={this.props.src} alt={this.props.text} width='160'/>
 					<span class='productName'>{this.props.name}</span>
 					<PriceAndButton value={this.props.value}/>
 				</div>
@@ -56,6 +56,14 @@ class BuyArea extends React.Component{
 		this.state = {
 			categoryList: ['Televisores', 'Celulares', 'Tablets', 'Notebooks', 'Livros'],
 			products: [
+				{value:200, name:'Phisically Based Rendering 3rd edition', src:'bookcover.png', text:'Bookcover3'},
+				{value:100, name:'Phisically Based Rendering 2nd edition', src:'bookcover.png', text:'Bookcover2'},
+				{value:200, name:'Phisically Based Rendering 3rd edition', src:'bookcover.png', text:'Bookcover3'},
+				{value:100, name:'Phisically Based Rendering 2nd edition', src:'bookcover.png', text:'Bookcover2'},
+				{value:200, name:'Phisically Based Rendering 3rd edition', src:'bookcover.png', text:'Bookcover3'},
+				{value:100, name:'Phisically Based Rendering 2nd edition', src:'bookcover.png', text:'Bookcover2'},
+				{value:200, name:'Phisically Based Rendering 3rd edition', src:'bookcover.png', text:'Bookcover3'},
+				{value:100, name:'Phisically Based Rendering 2nd edition', src:'bookcover.png', text:'Bookcover2'},
 				{value:200, name:'Phisically Based Rendering 3rd edition', src:'bookcover.png', text:'Bookcover3'},
 				{value:100, name:'Phisically Based Rendering 2nd edition', src:'bookcover.png', text:'Bookcover2'},
 			]

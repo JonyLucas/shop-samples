@@ -9,7 +9,7 @@ ol, ul {
 
 .productArea{
 	display: grid;
-	grid-template-columns: repeat(auto-fill, 190px);
+	grid-template-columns: repeat(auto-fill, 250px);
 	width: 100%;
 	margin: 10px 5px;
 }
@@ -18,7 +18,7 @@ ol, ul {
 	background-color: rgb(220, 250, 250);
 	margin: 5px;
 	padding: 10px;
-	width:  140px;
+	width:  200px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -30,17 +30,20 @@ ol, ul {
 }
 
 .productName{
-	font-size: 14px;
+	font-size: 16px;
 	display: block;
-	height: 40px;
-	width: 120px;
+	padding-top: 20px; 
+	height: 60px;
+	width: 200px;
 	text-align: center;
 	overflow: hidden;
+	font-weight: bold;
 }
 
 .priceLine{
 	display: inline-flex;
 	flex-direction: row;
+	justify-content: space-between;
 }
 
 .buyArea{
@@ -73,4 +76,9 @@ li{
 	display: inline-block;
 	vertical-align: text-bottom;
 	margin: 10px 20px 0px 0px;
+	font-size: 20px;
+}
+
+.minButton{
+	font-size: 16px;
 }
