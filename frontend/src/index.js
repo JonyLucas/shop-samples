@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
+import {CategoryList, HeadBar} from './extra.js'
+
 class PriceAndButton extends React.Component{
 	render(){
 		return (<div class='priceLine'>
@@ -39,33 +41,9 @@ class ProductArea extends React.Component{
 	}
 
 	render(){
-		return ( <ul class='productArea'>
+		return ( <div class='productArea'>
 					{this.generateProducts()}
-				</ul>
-		);
-	}
-}
-
-class CategoryList extends React.Component{
-
-	constructor(props){
-		super(props);
-
-		this.state = {
-			categoryList: props.categoryList,
-		};
-	}
-
-	generateCategories(){
-		return this.state.categoryList
-				.map(element => <li>{element}</li>)
-				.reduce( (prev, curr) => [prev, '\n', curr]);
-	}
-
-	render(){
-		return ( <ul class='categoryList'>
-					{this.generateCategories()}
-				</ul>
+				</div>
 		);
 	}
 }
@@ -88,41 +66,6 @@ class BuyArea extends React.Component{
 		return (<div class='buyArea'>
 					<CategoryList categoryList={this.state.categoryList}/>
 					<ProductArea products={this.state.products}/>
-				</div>
-		);
-	}
-}
-
-class NavBar extends React.Component{
-	render(){
-		let path = this.props.pathList;
-		let finalPath = '';
-
-		for(let i = 0; i < path.length; i++){
-			finalPath += path[i] + ' > ';
-		}
-
-		return (<div class='navBar'>
-					{finalPath}
-				</div>
-		);
-	}
-}
-
-class Cart extends React.Component{
-	render(){
-		return (<div class='priceLine'>
-					<span class='price'>{'R$ ' + this.props.value.toFixed(2)}</span><button>Carrinho</button>
-				</div>
-		);
-	}
-}
-
-class HeadBar extends React.Component{
-	render(){
-		return (<div class='navPath'>
-					<NavBar pathList={['Home', 'Categoria']}/>
-					<Cart value={300}/>
 				</div>
 		);
 	}

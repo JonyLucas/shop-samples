@@ -1,0 +1,100 @@
+body {
+	font: 14px "Century Gothic", Futura, sans-serif;
+	margin: 20px;
+}
+
+ol, ul {
+	padding-left: 30px;
+}
+
+.productArea{
+	display: block;
+	width: 80%;
+	margin: 10px 5px;
+}
+
+.productItem {
+	background-color: rgb(220, 250, 250);
+	margin: 5px;
+	padding: 10px;
+	width:  140px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	box-shadow: 3px 3px 4px rgb(205, 205, 206);
+}
+
+.productImage{
+	display: block;
+	margin: 20px 50px;
+	float: left;
+}
+
+.productName{
+	font-size: 28px;
+	display: block;
+	text-align: left;
+	overflow: hidden;
+	font-weight: bold;
+	margin-top: 20px;
+}
+
+.priceLine{
+	display: inline-flex;
+	flex-direction: row;
+}
+
+.buyArea{
+	display: flex;
+	flex-direction: row;
+}
+
+.categoryList{
+	margin: 0px;
+	padding: 0px;
+	padding-right: 20px;
+	list-style-type: none;
+}
+
+.navBar{
+	display: inline-block;
+	margin: 10px 0px 20px 100px;
+}
+
+li{
+	padding: 10px 0px;
+}
+
+.navPath{
+	display: flex;
+	justify-content: space-between;
+}
+
+.price{
+	display: inline-block;
+	vertical-align: text-bottom;
+	margin: 10px 20px 0px 0px;
+}
+
+.bigPrice{
+	font-size: 24px;
+	display: inline-block;
+	text-align: left;
+	margin-top: 80px;
+}
+
+.bigButton{
+	display: inline-block;
+	height: 40px;
+	width: 80px;
+	font-size: 20px;
+	margin-top: 80px;
+	margin-left: 400px;
+}
+
+.desc{
+	font-size: 20px;
+	display: block;
+	margin-top: 80px;
+	margin-left: 400px;
+}
