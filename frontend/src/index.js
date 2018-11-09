@@ -68,6 +68,10 @@ class BuyArea extends React.Component{
 				{value:100, name:'Phisically Based Rendering 2nd edition', src:'bookcover.png', text:'Bookcover2'},
 			]
 		};
+
+		//let categories = [];
+		//categoryList = categories.map( e => e.name);
+
 	}
 
 	render(){
